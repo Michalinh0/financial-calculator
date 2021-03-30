@@ -3,10 +3,9 @@ class FinancialCalculator:
         pass
 
     @staticmethod
-    def foo():
-        return "Hello world"
+    def calculate_consistent_savings():
+        pass
     
 
-x = FinancialCalculator.foo()
 if __name__ == "__main__":
     print("It works!")
