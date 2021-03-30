@@ -7,6 +7,5 @@ class FinancialCalculator:
         return "Hello world"
     
 
-x = FinancialCalculator.foo()
 if __name__ == "__main__":
     print("It works!")
