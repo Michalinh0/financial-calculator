@@ -8,5 +8,3 @@ class FinancialCalculator:
     
 
 x = FinancialCalculator.foo()
-print(x)
-print(x)
