@@ -3,9 +3,10 @@ import math
 
 class FinancialCalculator:
     beam_tax = 0.19
+
     def __init__(self):
         pass
-    
+
     @staticmethod
     def apply_beam_tax(value):
         return value - value*FinancialCalculator.beam_tax
@@ -46,7 +47,7 @@ if __name__ == "__main__":
 #    print("After " + str(months/12) + " years you will have " +      str(result[months]) + " zl ( excluding beam_tax's tax )")
     #print(f'After {months/12} years you will have {rounded_result[months]} zł (excluding beam tax)')
     print(rounded_result)
-    
+    rounded_result = []
     beam_tax = True
     result = FinancialCalculator.calculate_consistent_savings(
         deposit, months, rate, beam_tax)
