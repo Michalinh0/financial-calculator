@@ -31,21 +31,27 @@ if __name__ == "__main__":
     months = input("Tell me how long you want to save in years : ")
     rate = input("Tell me the rate of return ( 1% = 0.01 ) : ")
     deposit = int(deposit)
-    months = int(months)*12 # are these months?
+    months = int(months)*12
     rate = float(rate)
     beam_tax = False
 
     result = FinancialCalculator.calculate_consistent_savings(
         deposit, months, rate, beam_tax)
+    rounded_result = []
+    for value in result:
+        rounded_result.append(round(value, 2))
+
     for x in range(months):
         result[x-1] = (round(result[x-1]*100))/100
 #    print("After " + str(months/12) + " years you will have " +      str(result[months]) + " zl ( excluding beam_tax's tax )")
-    print(f'After {months/12} years you will have {result[months]} zł (excluding beam tax)')
-
+    #print(f'After {months/12} years you will have {rounded_result[months]} zł (excluding beam tax)')
+    print(rounded_result)
+    
     beam_tax = True
     result = FinancialCalculator.calculate_consistent_savings(
         deposit, months, rate, beam_tax)
-    for x in range(months):
-        result[x-1] = (round(result[x-1]*100))/100
+    for value in result:
+        rounded_result.append(round(value, 2))
+    print(rounded_result)
     #print("After " + str(months/12) + " years you will have " +      str(result[months]) + " zl ( including beam_tax's tax )")
-    print(f'After {months/12} years you will have {result[months]} zł (including beam tax)')
+    #print(f'After {months/12} years you will have {rounded_result[months]} zł (including beam tax)')
