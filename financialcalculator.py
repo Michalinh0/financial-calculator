@@ -1,14 +1,23 @@
+import math
+
 class FinancialCalculator: 
     def __init__(self):
         pass
 
     @staticmethod
-    def calculate_consistent_savings_no_belko_tax(deposit, years, rate, beam_tax=False):
+    def calculate_consistent_savings(deposit, years, rate, belko):
         sum = 0
-        for x in range (0, years):
+        monthly = [0]
+        for x in range (years):
             sum += deposit
-            sum *= (1+rate/12)
-        return sum
+            interest = sum*(rate/12)
+            #interest = (round(interest*100))/100
+            if belko == True : 
+                interest *= 0.81
+                #interest = (math.ceil(interest * 100))/100
+            sum += interest
+            monthly.append(sum)
+        return monthly
 
 
 if __name__ == "__main__":
@@ -18,6 +27,15 @@ if __name__ == "__main__":
     deposit = int(deposit)
     years=int(years)*12
     rate=float(rate)
-    result =FinancialCalculator.calculate_consistent_savings_no_belko_tax(deposit, years, rate)*100
-    result =(round(result))/100
-    print("After " + str(years/12) + " years you will have "+ str(result) + " zl ( excluding Belko's tax )")
+    belko = False
+    result =FinancialCalculator.calculate_consistent_savings(deposit, years, rate, belko)
+    for x in range (years):
+        result[x-1]=(round(result[x-1]*100))/100 
+    print("After " + str(years/12) + " years you will have "+ str(result[years]) + " zl ( excluding Belko's tax )")
+    belko = True
+    result = FinancialCalculator.calculate_consistent_savings(deposit, years, rate, belko)
+    for x in range (years):
+        result[x-1]=(round(result[x-1]*100))/100 
+    print("After " + str(years/12) + " years you will have "+ str(result[years]) + " zl ( including Belko's tax )")
+
+
