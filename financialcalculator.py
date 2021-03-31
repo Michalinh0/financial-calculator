@@ -11,10 +11,10 @@ class FinancialCalculator:
         return value - value*FinancialCalculator.beam_tax
 
     @staticmethod
-    def calculate_consistent_savings(deposit, years, rate, include_beam_tax):
+    def calculate_consistent_savings(deposit, months, rate, include_beam_tax):
         sum = 0
         monthly = [0]
-        for x in range(years):
+        for x in range(months):
             sum += deposit
             interest = sum*(rate/12)
             #interest = (round(interest*100))/100
@@ -28,24 +28,24 @@ class FinancialCalculator:
 
 if __name__ == "__main__":
     deposit = input("Tell me your monthly deposit : ")
-    years = input("Tell me how long you want to save in years : ")
+    months = input("Tell me how long you want to save in years : ")
     rate = input("Tell me the rate of return ( 1% = 0.01 ) : ")
     deposit = int(deposit)
-    years = int(years)*12 # are these months?
+    months = int(months)*12 # are these months?
     rate = float(rate)
     beam_tax = False
 
     result = FinancialCalculator.calculate_consistent_savings(
-        deposit, years, rate, beam_tax)
-    for x in range(years):
+        deposit, months, rate, beam_tax)
+    for x in range(months):
         result[x-1] = (round(result[x-1]*100))/100
-#    print("After " + str(years/12) + " years you will have " +      str(result[years]) + " zl ( excluding beam_tax's tax )")
-    print(f'After {years/12} years you will have {result[years]} zł (excluding beam tax)')
+#    print("After " + str(months/12) + " years you will have " +      str(result[months]) + " zl ( excluding beam_tax's tax )")
+    print(f'After {months/12} years you will have {result[months]} zł (excluding beam tax)')
 
     beam_tax = True
     result = FinancialCalculator.calculate_consistent_savings(
-        deposit, years, rate, beam_tax)
-    for x in range(years):
+        deposit, months, rate, beam_tax)
+    for x in range(months):
         result[x-1] = (round(result[x-1]*100))/100
-    #print("After " + str(years/12) + " years you will have " +      str(result[years]) + " zl ( including beam_tax's tax )")
-    print(f'After {years/12} years you will have {result[years]} zł (including beam tax)')
+    #print("After " + str(months/12) + " years you will have " +      str(result[months]) + " zl ( including beam_tax's tax )")
+    print(f'After {months/12} years you will have {result[months]} zł (including beam tax)')
