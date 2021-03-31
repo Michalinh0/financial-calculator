@@ -3,7 +3,7 @@ class FinancialCalculator:
         pass
 
     @staticmethod
-    def calculate_consistent_savings_no_belko_tax(deposit, years, rate):
+    def calculate_consistent_savings_no_belko_tax(deposit, years, rate, beam_tax=False):
         sum = 0
         for x in range (0, years):
             sum += deposit
