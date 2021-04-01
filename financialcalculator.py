@@ -26,6 +26,12 @@ class FinancialCalculator:
             monthly.append(sum)
         return monthly
 
+    @staticmethod
+    def calculate_interest(money, duration, returnrate):
+        interest = money * (returnrate*duration/12)
+        interest = FinancialCalculator.apply_beam_tax(interest)
+        return interest
+
 
 if __name__ == "__main__":
     deposit = input("Tell me your monthly deposit : ")
@@ -56,3 +62,12 @@ if __name__ == "__main__":
     print(rounded_result)
     #print("After " + str(months/12) + " years you will have " +      str(result[months]) + " zl ( including beam_tax's tax )")
     #print(f'After {months/12} years you will have {rounded_result[months]} zł (including beam tax)')
+    money = input("Tell me how much money you can deposit : ")
+    duration = input("Tell me how long the deposit will be ( in months ): ")
+    returnrate = input("Tell me the yearly rate of return ( 1% = 0.01 ): ")
+    money = int(money)
+    duration = int(duration)
+    returnrate = float(returnrate)
+    interest = round(FinancialCalculator.calculate_interest(money,duration,returnrate),2)
+    print (f'Interest after substracting beam tax will be {interest} zl')
+
