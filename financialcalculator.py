@@ -34,22 +34,22 @@ class FinancialCalculator:
 
     @staticmethod
     def calculate_saving_duration(expected, initial, savings, rate):
-        x = 0
+        saving_months = 0
         sum = initial
         if initial >= expected:
             not_found = False
         else:
             not_found = True
         while not_found:
-            x += 1
-            interests = (sum)*(rate/12)
+            saving_months += 1
+            interests = sum*(rate/12)
             interests = FinancialCalculator.apply_beam_tax(interests)
             sum +=interests
-            if (sum) >= expected:
+            if sum >= expected:
                 not_found = False
-            elif (sum+savings) >= expected:
+            elif sum+savings >= expected:
                 not_found = False
-                x = x+1
+                saving_months += 1
             else:
                 sum += savings
         return x
