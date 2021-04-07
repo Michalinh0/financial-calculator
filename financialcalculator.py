@@ -139,7 +139,7 @@ if __name__ == "__main__":
         kredyt += loan
         duration = int(duration)
         rate = float(rate)
-        suma += FinancialCalculator.calculate_installment(loan , duration, rate)*duration
+        suma += FinancialCalculator.calculate_installment(loan , duration, rate)
         suma = round(suma,2)
     duration = input("Tell me how long ( in months ) consolidation loan will be : ")
     rate = input("Tell me rate of consolidation loan ( 1% = 0.01 ) : ")
@@ -150,5 +150,8 @@ if __name__ == "__main__":
     result = FinancialCalculator.calculate_installment(kredyt, duration, rate)
     result = round(result,2)
     print (f'Monthly installment of consolidation loan will be {result} zl')
+    suma -= result
+    suma = round(suma,2)
+    print (f'Monthly installment will be lower by {suma} zl')
 
 
