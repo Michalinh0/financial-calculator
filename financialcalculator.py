@@ -64,7 +64,6 @@ class FinancialCalculator:
         return installment
 
 
-
 if __name__ == "__main__":
     '''
     deposit = input("Tell me your monthly deposit : ")
@@ -118,7 +117,6 @@ if __name__ == "__main__":
         print ("You already have expected amount of money")
     else:
         print (f'You will need to save for {saving_duration} months')
-    '''
     loan = input("Tell me how much you want to loan : ")
     duration = input("Tell me how long ( in months ) loan will be : ")
     rate = input("Tell me rate of loan ( 1% = 0.01 ) : ")
@@ -128,4 +126,29 @@ if __name__ == "__main__":
     installment = FinancialCalculator.calculate_installment(loan, duration, rate)
     installment = round(installment,2)
     print (f'Monthly installment will be {installment} zl')
+    '''
+    amount = input("Tell me how many loans you want to connect : ")
+    amount  = int(amount)
+    suma = 0
+    kredyt = 0 
+    for x in range (amount):
+        loan = input("Tell me how much you want to loan : ")
+        duration = input("Tell me how long ( in months ) loan will be : ")
+        rate = input("Tell me rate of loan ( 1% = 0.01 ) : ")
+        loan = int(loan)
+        kredyt += loan
+        duration = int(duration)
+        rate = float(rate)
+        suma += FinancialCalculator.calculate_installment(loan , duration, rate)*duration
+        suma = round(suma,2)
+    duration = input("Tell me how long ( in months ) consolidation loan will be : ")
+    rate = input("Tell me rate of consolidation loan ( 1% = 0.01 ) : ")
+    duration = int(duration)
+    rate = float(rate)
+    #suma = suma/duration
+    #suma = round(suma,2)
+    result = FinancialCalculator.calculate_installment(kredyt, duration, rate)
+    result = round(result,2)
+    print (f'Monthly installment of consolidation loan will be {result} zl')
+
 
