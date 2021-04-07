@@ -51,7 +51,12 @@
 
         </div>
     </div>
-
+    <script>
+        $("form").submit(function(event) {
+            console.log($(this).serializeArray());
+            event.preventDefault();
+        })
+    </script>
 </body>
 
 </html>
