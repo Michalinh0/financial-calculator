@@ -53,6 +53,15 @@ class FinancialCalculator:
             else:
                 sum += savings
         return x
+    
+    @staticmethod
+    def calculate_installment (loan, duration, rate):
+        sum = 0
+        factor = 1+(rate/12)
+        for x in range (1,duration+1):
+            sum += factor**-x
+        installment = loan/sum
+        return installment
 
 
 
@@ -95,7 +104,7 @@ if __name__ == "__main__":
     returnrate = float(returnrate)
     interest = round(FinancialCalculator.calculate_interest(money,duration,returnrate),2)
     print (f'Interest after substracting beam tax will be {interest} zl')
-    '''
+    
     expected = input ("Tell me how much you want to have : ")
     initial = input ("Tell me how much you can invest initially : ")
     savings = input ("Tell me how much you can save every month : ")
@@ -109,5 +118,14 @@ if __name__ == "__main__":
         print ("You already have expected amount of money")
     else:
         print (f'You will need to save for {saving_duration} months')
-
+    '''
+    loan = input("Tell me how much you want to loan : ")
+    duration = input("Tell me how long ( in months ) loan will be : ")
+    rate = input("Tell me rate of loan ( 1% = 0.01 ) : ")
+    loan = int(loan)
+    duration = int(duration)
+    rate = float(rate)
+    installment = FinancialCalculator.calculate_installment(loan, duration, rate)
+    installment = round(installment,2)
+    print (f'Monthly installment will be {installment} zl')
 
