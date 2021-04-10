@@ -14,7 +14,6 @@ def display_main_page():
 
 @app.route('/consistent-savings')
 def display_consistent_savings():
-    page_name = 'consistent-savings'
     return render_template('consistent_savings.html')
 
 
@@ -25,9 +24,7 @@ def calculate_consistent_savings():
         period = int(request.form['period'])
         rate = float(request.form['rate'])
         result = FC.calculate_consistent_savings(deposit, period, rate, True)
-        print(result)
-
-    return redirect('/consistent-savings')
+    return render_template('consistent_savings.html', result=result)
 
 if __name__ == "__main__":
     app.run()
