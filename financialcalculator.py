@@ -12,7 +12,7 @@ class FinancialCalculator:
         return value - value*FinancialCalculator.beam_tax
 
     @staticmethod
-    def calculate_consistent_savings(deposit, years, rate, include_beam_tax):
+    def calculate_savings(deposit, years, rate, include_beam_tax):
         sum = 0
         monthly = [0]
         for x in range(years):
@@ -27,13 +27,13 @@ class FinancialCalculator:
         return monthly
 
     @staticmethod
-    def calculate_interest(money, duration, rate):
+    def calculate_investement(money, duration, rate):
         interest = money * (rate*duration/12)
         interest = FinancialCalculator.apply_beam_tax(interest)
         return interest
 
     @staticmethod
-    def calculate_saving_duration(expected, initial, savings, rate):
+    def calculate_interest_saving_time(expected, initial, savings, rate):
         saving_months = 0
         sum = initial
         if initial >= expected:
@@ -52,7 +52,7 @@ class FinancialCalculator:
                 saving_months += 1
             else:
                 sum += savings
-        return x
+        return saving_months
 
     @staticmethod
     def calculate_installment(loan, duration, rate):
@@ -72,14 +72,14 @@ if __name__ == "__main__":
     years = int(years)*12
     rate = float(rate)
     beam_tax = False
-    result = FinancialCalculator.calculate_consistent_savings(
+    result = FinancialCalculator.calculate_savings(
         deposit, years, rate, beam_tax)
     for x in range(years):
         result[x-1] = (round(result[x-1]*100))/100
     print("After " + str(years/12) + " years you will have " +
           str(result[years]) + " zl ( excluding beam_tax's tax )")
     beam_tax = True
-    result = FinancialCalculator.calculate_consistent_savings(
+    result = FinancialCalculator.calculate_savings(
         deposit, months, rate, beam_tax)
     for value in result:
         rounded_result.append(round(value, 2))
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     money = int(money)
     duration = int(duration)
     returnrate = float(returnrate)
-    interest = round(FinancialCalculator.calculate_interest(
+    interest = round(FinancialCalculator.calculate_investement(
         money, duration, returnrate), 2)
     print(f'Interest after substracting beam tax will be {interest} zl')
 
@@ -105,7 +105,7 @@ if __name__ == "__main__":
     initial = int(initial)
     savings = int(savings)
     rate_of_return = float(rate_of_return)
-    saving_duration = FinancialCalculator.calculate_saving_duration(
+    saving_duration = FinancialCalculator.calculate_interest(
         expected, initial, savings, rate_of_return)
     if saving_duration == 0:
         print("You already have expected amount of money")
