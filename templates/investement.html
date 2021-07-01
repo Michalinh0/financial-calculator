@@ -12,15 +12,18 @@
         <input type="text" name="duration" id="duration" class="form-control">
         <label for="rate" class="input-group-text">OPROCENTOWANIE</label>
         <input type="text" name="rate" id="rate" class="form-control" aria-label="With textarea">
-        <button type="submit" class="btn btn-primary">OBLICZ</button>
     </div>
+    <button type="submit">OBLICZ</button>
+
 </form>
 {% endblock %}
 {% block result %}
 {% if response %}
 <script>
     const response = {{ response | tojson | safe }};
-    $('#result').text(response + '?');
+    const result_msg1 = 'Zysk z lokaty: ';
+    const result_msg2 = 'Zysk z lokaty po uwzględnieniu podatku belki: ';
+    $('#result').html(`${result_msg1}${response['interest']} zł<br>${result_msg2}${response['interest_with_beam_tax']} zł`);
 </script>
 {% endif %}
 {% endblock %}

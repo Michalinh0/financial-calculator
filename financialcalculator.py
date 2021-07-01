@@ -28,9 +28,11 @@ class FinancialCalculator:
 
     @staticmethod
     def calculate_investement(money, duration, rate):
-        interest = money * (rate*duration/12)
-        interest = FinancialCalculator.apply_beam_tax(interest)
-        return interest
+        interest = money * (duration*rate/12)
+        return {
+            "interest": interest,
+            "interest_with_beam_tax": FinancialCalculator.apply_beam_tax(interest)
+        }
 
     @staticmethod
     def calculate_interest_saving_time(expected, initial, savings, rate):
