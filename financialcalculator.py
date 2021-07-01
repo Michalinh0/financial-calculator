@@ -29,6 +29,7 @@ class FinancialCalculator:
 
     @staticmethod
     def calculate_investement(money, duration, rate):
+        """Calculate the profit of investement after given months and rate."""
         sum = money
         for x in range(duration):
             interest = sum*(rate/12*0.01)
