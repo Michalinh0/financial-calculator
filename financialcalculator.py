@@ -36,6 +36,7 @@ class FinancialCalculator:
 
     @staticmethod
     def calculate_interest_saving_time(expected, initial, savings, rate):
+        """Calculate the number of months needed to save given amount of money."""
         saving_months = 0
         sum = initial
         if initial >= expected:

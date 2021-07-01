@@ -62,14 +62,9 @@ form label{
 
 form .input-group{
     display: flex;
-}
-form .input-group label{
-    flex-grow: 1;
+    margin-bottom: 0.25em;
 }
 
-form .input-group input{
-    flex-grow: 4;
-}
 form button{
     background-color: rgb(94, 189, 0);
     width: 15vw;
