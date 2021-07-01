@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block calculator %}
+
+<div id="calculator-name">
+    KALKULATOR LOKAT
+</div>
+<form action="/investement" method="POST">
+    <div class="input-group input-group-lg">
+        <label for="loan" class="input-group-text">KWOTA LOKATY</label>
+        <input type="text" name="loan" id="loan" class="form-control">
+        <label for="duration" class="input-group-text">OKRES LOKATY</label>
+        <input type="text" name="duration" id="duration" class="form-control">
+        <label for="rate" class="input-group-text">OPROCENTOWANIE</label>
+        <input type="text" name="rate" id="rate" class="form-control" aria-label="With textarea">
+        <button type="submit" class="btn btn-primary">OBLICZ</button>
+    </div>
+</form>
+{% endblock %}
+{% block result %}
+{% if response %}
+<script>
+    const response = {{ response | tojson | safe }};
+    $('#result').text(response + '?');
+</script>
+{% endif %}
+{% endblock %}

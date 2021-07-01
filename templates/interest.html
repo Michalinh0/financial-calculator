@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block calculator %}
+
+<div id="calculator-name">
+    KALKULATOR ODSETKOWY
+</div>
+<form action="/interest" method="POST">
+    <div class="input-group input-group-lg">
+        <label for="expected" class="input-group-text">JAKIEJ KWOTY OCZEKUJESZ</label>
+        <input type="text" name="expected" id="expected" class="form-control">
+        <label for="initial" class="input-group-text">ILE MOŻESZ ZAINWESTOWAĆ JEDNORAZOWO</label>
+        <input type="text" name="initial" id="initial" class="form-control">
+        <label for="savings" class="input-group-text">ILE MOŻESZ OSZCZĘDZAĆ REGULARNIE</label>
+        <input type="text" name="savings" id="savings" class="form-control" aria-label="With textarea">
+        <label for="rate" class="input-group-text">OPROCENTOWANIE W SKALI ROKU</label>
+        <input type="text" name="rate" id="rate" class="form-control" aria-label="With textarea">
+        <button type="submit" class="btn btn-primary">OBLICZ</button>
+    </div>
+</form>
+{% endblock %}
+{% block result %}
+{% if response %}
+<script>
+    const response = {{ response | tojson | safe }};
+    $('#result').text(response + '?');
+</script>
+{% endif %}
+{% endblock %}

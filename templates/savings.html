@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block calculator %}
+<script type=text/javascript src="{{url_for('static', filename='js/chart.js') }}"></script>
+<div id="calculator-name">
+    KALKULATOR REGULARNEGO OSZCZĘDZANIA
+</div>
+<form action="/savings" method="POST">
+    <div class="input-group input-group-lg">
+        <label for="deposit" class="input-group-text">WYSOKOŚĆ MIESIĘCZNEJ SKŁADKI </label>
+        <input type="text" name="deposit" id="deposit" class="form-control">
+        <label for="period" class="input-group-text">OKRES OSZCZĘDZANIA </label>
+        <input type="text" name="period" id="period" class="form-control">
+        <label for="rate" class="input-group-text">STOPA ZWROTU W SKALI ROKU</label>
+        <input type="text" name="rate" id="rate" class="form-control" aria-label="With textarea">
+    </div>
+    <button type="submit">OBLICZ</button>
+
+</form>
+
+{% endblock %}
+{% block result %}
+{% if response %}
+<canvas id="line-chart"></canvas>
+<script>
+    const response = {{ response | tojson | safe }};
+    const ctx = document.getElementById('line-chart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels:
+                response,
+            datasets: [{
+                label: 'Dataset 1',
+                borderWidth: 2,
+                borderColor: 'blue',
+                fill: false,
+                data: response,
+
+            }]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Chart.js Draw Line on Chart'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: true
+            },
+        }
+    });
+</script>
+{% endif %}
+{% endblock %}

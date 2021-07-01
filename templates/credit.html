@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block calculator %}
+
+<div id="calculator-name">
+    KALKULATOR KREDYTOWY
+</div>
+<form action="/credit" method="POST">
+    <div class="input-group input-group-lg">
+        <label for="loan" class="input-group-text">KWOTA KREDYTU</label>
+        <input type="text" name="loan" id="loan" class="form-control">
+        <label for="duration" class="input-group-text">OKRES SPŁATY </label>
+        <input type="text" name="duration" id="duration" class="form-control">
+        <label for="rate" class="input-group-text">OPROCENTOWANIE</label>
+        <input type="text" name="rate" id="rate" class="form-control" aria-label="With textarea">
+        <button type="submit" class="btn btn-primary">OBLICZ RATĘ KREDYTU</button>
+    </div>
+</form>
+{% endblock %}
+{% block result %}
+{% if response %}
+<script>
+    const response = {{ response | tojson | safe }};
+    $('#result').text(response + '?');
+</script>
+{% endif %}
+{% endblock %}
