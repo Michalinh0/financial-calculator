@@ -12,12 +12,13 @@ class FinancialCalculator:
         return value - value*FinancialCalculator.beam_tax
 
     @staticmethod
-    def calculate_savings(deposit, years, rate, include_beam_tax):
+    def calculate_savings(deposit, months, rate, include_beam_tax):
+        """Calculate how much you save after given time in months, annual interest rate"""
         sum = 0
         monthly = [0]
-        for x in range(years):
+        for x in range(months):
             sum += deposit
-            interest = sum*(rate/12)
+            interest = sum*(rate*0.01/12)
             #interest = (round(interest*100))/100
             if include_beam_tax:
                 interest = FinancialCalculator.apply_beam_tax(interest)
@@ -27,8 +28,9 @@ class FinancialCalculator:
         return monthly
 
     @staticmethod
-    def calculate_investement(money, duration, rate):
-        interest = money * (duration*rate/12)
+    def calculate_investement(money, months, rate):
+        """Calculate the profit of investement after given months and rate."""
+        interest = money * (months*rate/12*0.01)
         return {
             "interest": interest,
             "interest_with_beam_tax": FinancialCalculator.apply_beam_tax(interest)
@@ -38,7 +40,7 @@ class FinancialCalculator:
     def calculate_interest_saving_time(expected, initial, savings, rate):
         """Calculate the number of months needed to save given amount of money."""
         saving_months = 0
-        sum = initial
+        sum = initials
         if initial >= expected:
             not_found = False
         else:
@@ -59,6 +61,7 @@ class FinancialCalculator:
 
     @staticmethod
     def calculate_installment(loan, duration, rate):
+        """Calculate an installment for a given loan."""
         sum = 0
         factor = 1+(rate/12)
         for x in range(1, duration+1):
