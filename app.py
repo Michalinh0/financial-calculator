@@ -3,7 +3,7 @@ from financialcalculator import FinancialCalculator as FC
 app = Flask(__name__)
 app.config.update(
     TEMPLATES_AUTO_RELOAD=True,
-    debug=True
+    debug4=True
 )
 
 

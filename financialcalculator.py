@@ -24,6 +24,7 @@ class FinancialCalculator:
                 interest = FinancialCalculator.apply_beam_tax(interest)
                 #interest = (math.ceil(interest * 100))/100
             sum += interest
+            sum = round(sum, 2)
             monthly.append(sum)
         return monthly
 
@@ -36,8 +37,8 @@ class FinancialCalculator:
             sum += interest
         sum -=money
         return {
-            "interest": sum,
-            "interest_with_beam_tax": FinancialCalculator.apply_beam_tax(sum)
+            "interest": round(sum, 2),
+            "interest_with_beam_tax": round(FinancialCalculator.apply_beam_tax(sum), 2)
         }
 
     @staticmethod
@@ -71,4 +72,4 @@ class FinancialCalculator:
         for x in range(1, duration+1):
             sum += factor**-x
         installment = loan/sum
-        return installment
+        return round(installment, 2)
