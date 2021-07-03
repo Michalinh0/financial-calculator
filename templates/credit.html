@@ -7,11 +7,11 @@
 <form action="/credit" method="POST">
     <div class="input-group input-group-lg">
         <label for="loan" class="input-group-text">KWOTA KREDYTU</label>
-        <input type="text" name="loan" id="loan" class="form-control">
+        <input type="text" name="loan" id="loan" class="form-control"required="required">
         <label for="duration" class="input-group-text">OKRES SPŁATY </label>
-        <input type="text" name="duration" id="duration" class="form-control">
+        <input type="text" name="duration" id="duration" class="form-control"required="required">
         <label for="rate" class="input-group-text">OPROCENTOWANIE</label>
-        <input type="text" name="rate" id="rate" class="form-control" aria-label="With textarea">
+        <input type="text" name="rate" id="rate" class="form-control" required="required">
     </div>
     <button type="submit">OBLICZ RATĘ KREDYTU</button>
 

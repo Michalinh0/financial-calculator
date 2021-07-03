@@ -7,11 +7,11 @@
 <form action="/savings" method="POST">
     <div class="input-group input-group-lg">
         <label for="deposit" class="input-group-text">WYSOKOŚĆ MIESIĘCZNEJ SKŁADKI </label>
-        <input type="text" name="deposit" id="deposit" class="form-control">
+        <input type="text" name="deposit" id="deposit" class="form-control" required="required">
         <label for="period" class="input-group-text">OKRES OSZCZĘDZANIA </label>
-        <input type="text" name="period" id="period" class="form-control">
+        <input type="text" name="period" id="period" class="form-control" required="required">
         <label for="rate" class="input-group-text">STOPA ZWROTU W SKALI ROKU (%)</label>
-        <input type="text" name="rate" id="rate" class="form-control" aria-label="With textarea">
+        <input type="text" name="rate" id="rate" class="form-control" aria-label="With textarea" required="required">
     </div>
     <button type="submit">OBLICZ</button>
 
@@ -26,23 +26,22 @@
     const ctx = document.getElementById('line-chart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
+        labels: [Object.keys(response).length],
         data: {
             labels:
                 response,
             datasets: [{
-                label: 'Dataset 1',
+                label: 'Zyski w kolejnych miesiącach oszczędzania',
                 borderWidth: 2,
                 borderColor: 'blue',
                 fill: false,
                 data: response,
-
             }]
         },
         options: {
             responsive: true,
             title: {
                 display: true,
-                text: 'Chart.js Draw Line on Chart'
             },
             tooltips: {
                 mode: 'index',
