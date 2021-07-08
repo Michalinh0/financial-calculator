@@ -71,3 +71,56 @@ class FinancialCalculator:
             sum += factor**-x
         installment = loan/sum
         return installment
+
+    @staticmethod
+    def calculate_cost_of_loan(money,duration, rate,commision,other):
+        """Calculate total cost of a given loan"""
+        paid = FinancialCalculator.calculate_installment(money, duration,rate)
+        paid *= duration
+        paid += commision
+        paid += other
+        paid -= money
+        return paid
+
+    @staticmethod
+    def calculate_rrso(money,duration,rate):
+        """Calculate real annual interest rate of a given loan"""
+        rrso = 1.6384
+        help = rrso
+        epsilon = 1
+        installment = FinancialCalculator.calculate_installment(money,duration,rate)
+        x = 1
+        sum = 0
+        for x in range(duration):
+            denominator = 1 + rrso
+            denominator ** x/12
+            sum += installment/denominator
+        if(abs(sum-money)<=epsilon):
+            return rrso*100
+        elif(sum<money):
+            return 200
+        else:
+            rrso /= 2
+            help = rrso
+            i = 1
+            for i in range(14):
+                help /= 2
+                x = 1
+                sum = 0
+                for x in range(duration):
+                    denominator = 1 + rrso
+                    denominator ** x/12
+                    sum += installment/denominator
+                if(abs(sum-money)<=epsilon):
+                    return rrso*100
+                elif(sum>money):
+                    rrso -= help
+                else:
+                    rrso += help
+                
+
+        
+        
+
+
+
