@@ -35,7 +35,7 @@ class FinancialCalculator:
         for x in range(duration):
             interest = sum*(rate/12*0.01)
             sum += interest
-        sum -=money
+        sum -= money
         return {
             "interest": round(sum, 2),
             "interest_with_beam_tax": round(FinancialCalculator.apply_beam_tax(sum), 2)
@@ -72,34 +72,40 @@ class FinancialCalculator:
         for x in range(1, duration+1):
             sum += factor**-x
         installment = loan/sum
-        return installment
+        return round(installment, 2)
 
     @staticmethod
-    def calculate_cost_of_loan(money,duration, rate,commision,other):
-        """Calculate total cost of a given loan"""
-        paid = FinancialCalculator.calculate_installment(money, duration,rate)
-        paid *= duration
-        paid += commision
-        paid += other
-        paid -= money
-        return paid
+    def calculate_cost_of_loan(loan, duration, rate, commission, other_costs):
+        """Calculate total cost of a given loan.
+            Duration: repayment time in months,
+            Rate: in percents,
+         """
+        total_cost = FinancialCalculator.calculate_installment(
+            loan, duration, rate)
+        total_cost *= duration
+        total_cost += commission
+        total_cost += other_costs
+        total_cost -= loan
+        return round(total_cost, 2)
+
 
     @staticmethod
-    def calculate_rrso(money,duration,rate):
+    def calculate_rrso(money, duration, rate):
         """Calculate real annual interest rate of a given loan"""
         rrso = 1.6384
         help = rrso
         epsilon = 1
-        installment = FinancialCalculator.calculate_installment(money,duration,rate)
+        installment = FinancialCalculator.calculate_installment(
+            money, duration, rate)
         x = 1
         sum = 0
         for x in range(duration):
             denominator = 1 + rrso
             denominator ** x/12
             sum += installment/denominator
-        if(abs(sum-money)<=epsilon):
+        if(abs(sum-money) <= epsilon):
             return rrso*100
-        elif(sum<money):
+        elif(sum < money):
             return 200
         else:
             rrso /= 2
@@ -113,16 +119,10 @@ class FinancialCalculator:
                     denominator = 1 + rrso
                     denominator ** x/12
                     sum += installment/denominator
-                if(abs(sum-money)<=epsilon):
+                if(abs(sum-money) <= epsilon):
                     return rrso*100
-                elif(sum>money):
+                elif(sum > money):
                     rrso -= help
                 else:
                     rrso += help
-                
-
-        
-        
-
-
 

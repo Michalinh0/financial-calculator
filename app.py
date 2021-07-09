@@ -70,13 +70,23 @@ def display_credit_calculator():
             return render_template('credit.html', error="Nieprawidłowe dane.")
     return render_template('credit.html')
 
-'''
-@app.route('/rrso', methods=['GET', 'POST'])
-def display_rrso_calculator():
+
+@app.route('/loan-cost', methods=['GET', 'POST'])
+def display_credit_cost_calculator():
     if request.method == "POST":
-        response = ''
-        return render_template('rrso.html', response=response)
-    return render_template('rrso.html')
-'''
+        try:
+            loan = float(request.form['loan'])
+            duration = int(request.form['duration'])
+            rate = float(request.form['rate'])
+            commission = float(request.form['commission'])
+            other_costs = float(request.form['other_costs'])
+
+            response = FC.calculate_cost_of_loan(loan, duration, rate, commission, other_costs)
+            return render_template('loan_cost.html', response=response)
+        except Exception as e:
+            return render_template('loan_cost.html', error="Nieprawidłowe dane.")
+    return render_template('loan_cost.html')
+
+
 if __name__ == "__main__":
     app.run()

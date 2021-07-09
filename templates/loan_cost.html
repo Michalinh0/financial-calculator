@@ -2,9 +2,9 @@
 {% block calculator %}
 
 <div id="calculator-name">
-    KALKULATOR RAT KREDYTU
+    KALKULATOR KOSZTU CAŁKOWITEGO KREDYTU
 </div>
-<form action="/credit" method="POST">
+<form action="/loan-cost" method="POST">
     <div class="input-group input-group-lg">
         <label for="loan" class="input-group-text">KWOTA KREDYTU</label>
         <input type="text" name="loan" id="loan" class="form-control"required="required">
@@ -12,8 +12,13 @@
         <input type="text" name="duration" id="duration" class="form-control"required="required">
         <label for="rate" class="input-group-text">OPROCENTOWANIE (%)</label>
         <input type="text" name="rate" id="rate" class="form-control" required="required">
+        <label for="commission" class="input-group-text">PROWIZJA</label>
+        <input type="text" name="commission" id="commission" class="form-control" required="required">
+        <label for="other_costs" class="input-group-text">DODATKOWE KOSZTY</label>
+        <input type="text" name="other_costs" id="other_costs" class="form-control" required="required">
+  
     </div>
-    <button type="submit">OBLICZ RATĘ</button>
+    <button type="submit">OBLICZ</button>
 
 </form>
 {% endblock %}
@@ -21,7 +26,7 @@
 {% if response %}
 <script>
     const response = {{ response | tojson | safe }};
-    const resultMsg1 = 'Rata za kredyt wynosi: '
+    const resultMsg1 = 'Całkowity koszt kredytu wynosi: '
     $('#result').text(resultMsg1+response+'zł');
 </script>
 {% endif %}
