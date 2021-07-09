@@ -52,7 +52,7 @@ class FinancialCalculator:
             not_found = True
         while not_found:
             saving_months += 1
-            interests = sum*(rate/12)
+            interests = sum*(rate/12)*0.01
             interests = FinancialCalculator.apply_beam_tax(interests)
             sum += interests
             if sum >= expected:
@@ -68,7 +68,7 @@ class FinancialCalculator:
     def calculate_installment(loan, duration, rate):
         """Calculate an installment for a given loan."""
         sum = 0
-        factor = 1+(rate/12)
+        factor = 1+(rate/12)*0.01
         for x in range(1, duration+1):
             sum += factor**-x
         installment = loan/sum
