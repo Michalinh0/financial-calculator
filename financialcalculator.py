@@ -24,19 +24,21 @@ class FinancialCalculator:
                 interest = FinancialCalculator.apply_beam_tax(interest)
                 #interest = (math.ceil(interest * 100))/100
             sum += interest
+            sum = round(sum, 2)
             monthly.append(sum)
         return monthly
 
     @staticmethod
     def calculate_investement(money, duration, rate):
+        """Calculate the profit of investement after given months and rate."""
         sum = money
         for x in range(duration):
             interest = sum*(rate/12*0.01)
             sum += interest
         sum -=money
         return {
-            "interest": sum,
-            "interest_with_beam_tax": FinancialCalculator.apply_beam_tax(sum)
+            "interest": round(sum, 2),
+            "interest_with_beam_tax": round(FinancialCalculator.apply_beam_tax(sum), 2)
         }
 
     @staticmethod

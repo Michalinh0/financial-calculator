@@ -7,16 +7,16 @@
 <form action="/interest" method="POST">
     <div class="row input-group input-group-lg">
             <label for="expected" class="col-3 input-group-text">JAKIEJ KWOTY OCZEKUJESZ</label>
-            <input type="text" name="expected" id="expected" class="col form-control">
+            <input type="text" name="expected" id="expected" class="col form-control" required="required">
             <label for="initial" class=" col-3 input-group-text">ILE MOŻESZ ZAINWESTOWAĆ JEDNORAZOWO</label>
-            <input type="text" name="initial" id="initial" class="col form-control">
+            <input type="text" name="initial" id="initial" class="col form-control" required="required">
        
     </div>
     <div class="row input-group input-group-lg">
         <label for="savings" class="col input-group-text">ILE MOŻESZ OSZCZĘDZAĆ REGULARNIE</label>
-        <input type="text" name="savings" id="savings" class="col form-control">
+        <input type="text" name="savings" id="savings" class="col form-control"required="required">
         <label for="rate" class="col input-group-text">OPROCENTOWANIE W SKALI ROKU (%)</label>
-        <input type="text" name="rate" id="rate" class="col form-control">
+        <input type="text" name="rate" id="rate" class="col form-control"required="required">
     </div>
     <button type="submit">OBLICZ</button>
 

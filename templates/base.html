@@ -26,6 +26,13 @@
             <div id="result">
                 {% block result %}{% endblock %}
             </div>
+
+          
+            {% if error %}
+            <div class="error-msg">
+                {{error}}
+            </div>
+            {% endif %}
         </div>
         
         <div id="other-calculators">
